@@ -3,7 +3,6 @@
 #errors in syntax if command is wrong
 if [[ $# -ne 1 ]]; then
         echo "$0 (link|unlink)"
-        exit 1
 fi
 
 #actually link/unlink
@@ -13,8 +12,8 @@ if [[ $1 != "link" && $1 != "unlink" ]]; then
 fi
 
 if [[ $1 == "link" ]]; then
-        cp -f ~/.scripts/Makehtml ~/bin/Makehtml
-        cp -f ~/.scripts/Makeflask ~/bin/Makeflask
+        rm -f ~/bin/Makehtml
+        rm -f ~/bin/Makeflask
         ln -s ~/.scripts/Makehtml ~/bin/Makehtml
         ln -s ~/.scripts/Makeflask ~/bin/Makeflask
 fi
