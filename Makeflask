@@ -1,0 +1,43 @@
+#!/bin/bash
+
+
+# if a directory with that name already exists it asks to overwrite
+if [[ -e $1  && -d $1 ]]; then
+        echo "this directory already exists, would you like to overwrite it y/n"
+        read -r $answer
+        if [[ $answer == "y" ]]; then
+                rm -rf $1
+                mkdir $1
+        fi
+else
+        mkdir $1
+fi
+
+# other commands to run
+
+cd $1
+python3 -m venv env
+source env/bin/activate
+pip install flask
+pip install requests
+mkdir templates
+make_html templates/index
+mkdir static
+touch appclient.py
+touch app.py
+
+# contents of app.py
+echo 'from flask import Flask, render_template
+app = Flask(__name__)
+
+@app.route("/")
+
+def index():
+        return render_template("index.html' > app.py
+
+# end message and execute bash
+echo "
+everything has been made you are now in $1 directory
+"
+
+exec bash
